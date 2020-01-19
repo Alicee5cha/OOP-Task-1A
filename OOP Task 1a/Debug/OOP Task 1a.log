@@ -1,7 +1,0 @@
-﻿  Game.cpp
-  Mouse.cpp
-  Snake.cpp
-  Source.cpp
-  Generating Code...
-C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Snake.cpp(43): error C4700: uninitialized local variable 'snake_dy' used
-C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Snake.cpp(43): error C4700: uninitialized local variable 'snake_dx' used

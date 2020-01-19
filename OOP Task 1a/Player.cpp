@@ -1,10 +1,10 @@
 #include "Player.h"
-Player::Player()
+Player::Player(string name):name(name)
 {
 
 }
 
-string Player::get_name() const
+const string Player::get_name() const
 {
 	return name;
 }

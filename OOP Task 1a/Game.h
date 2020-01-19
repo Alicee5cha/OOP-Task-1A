@@ -3,7 +3,7 @@
 #include <string>		
 #include <assert.h>	
 #include <vector>
-
+#include <iostream>
 #include "Mouse.h"
 #include "Snake.h"
 #include "Underground.h"
@@ -26,10 +26,11 @@ private:
 public:
       //Default
 	  //void set_up();
-	  Game();
+	  Game(string name);
       vector<vector<char>> prepare_grid();
       void process_input(int key);
-      bool is_running();
+      bool is_running() const;
       //int find_hole_number_at_position(int x, int y);
       string get_end_reason();
+      Player get_player() const;
 };

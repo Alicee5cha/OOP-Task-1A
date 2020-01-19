@@ -1,15 +1,20 @@
 #include "raylib.h"
 #include "Game.h"
-#include <string>
-#include <iostream>
+using namespace std;
 int main()
 {
 	InitWindow(900, 600, "OOP Assignment 1");
 	SetTargetFPS(144);
 
-	Game game;
+	//I'm taking names
+	string name;
+	cout << "Please enter your name: ";
+	cin >> name;
+	//And giving them to games.
+	Game game(name);
 	//game.set_up();
 
+	char input = 'Y';
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
@@ -25,6 +30,8 @@ int main()
 		else
 		{
 			DrawText(game.get_end_reason().c_str(), 610, 10, 20, LIGHTGRAY);
+			DrawText("Would you like to play again? Y or N", 610, 35, 20, LIGHTGRAY);
+			input = ' ';
 		}
 
 		const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
@@ -41,16 +48,30 @@ int main()
 				switch (grid[y][x])
 				{
 					case HOLE:       DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLACK);     break;
-					case SNAKEHEAD:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED);       break;
 					case MOUSE:      DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);     break;
 					case FREECELL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN); break;
 					case NUT:		 DrawRectangle(xPosition, yPosition, cellSize, cellSize, BROWN);	 break;
 					case SNAKETAIL:	 DrawRectangle(xPosition, yPosition, cellSize, cellSize, PURPLE);	 break;
+					case SNAKEHEAD:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED);       break;
 					default:         assert(false); // if this assert triggers there's an unrecognised tile on the grid!
 				}
 
 				// draw lines around each tile, remove this if you don't like it!
 				DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY);
+			}
+		}
+
+		//Draw texts (score, name, etc...)
+		string title_1 = "Name: " + name;
+		DrawText(title_1.c_str() , 610, 35, 20, LIGHTGRAY);
+		DrawText("Score: " + game.get_player().get_score(), 610, 60, 20, LIGHTGRAY);
+		
+		while (input != 'Y' && input != 'N')
+		{
+			input = getchar() | 32; //"or"ed with 32 acts like "toupper" for a char. y-->Y but Y-/->y
+			if (input == 'Y')
+			{
+
 			}
 		}
 

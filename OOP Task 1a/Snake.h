@@ -18,13 +18,13 @@ private: // util functions
 	void set_direction(int& dx, int& dy);
 	void update_position(int dx, int dy);
 	void position_at_random();
-	void move_tail(vector<char> tail);
+	void move_tail();
 
 
 private: // data
 	Mouse* p_mouse;
 	static RandomNumberGenerator rng;
-	vector<char> tail;
+	vector<MoveableGridItem> tail;
 
 
 };

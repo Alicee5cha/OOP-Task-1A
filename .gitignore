@@ -6,4 +6,6 @@
 /.vs/OOP-Task-1A/v16
 /.vs
 /Debug
+/x64/Debug
 /x64
+/raylib

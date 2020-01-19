@@ -1,6 +1,6 @@
 #include "Nut.h"
 
-Nut::Nut():MoveableGridItem(10,5,NUT),collected(false)
+Nut::Nut():collected(false),MoveableGridItem(10,5,NUT)
 {
 
 }

@@ -5,11 +5,13 @@
 RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 
-Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD), t1(x-1,y,SNAKETAIL), t2(x - 1, y-1, SNAKETAIL), t3(x, y-1, SNAKETAIL)
+Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD)
 {
-	tail.push_back(t1);
-	tail.push_back(t2);
-	tail.push_back(t3);
+	for (int i = 0; i < 3; i++)
+	{
+		MoveableGridItem t(x,y,SNAKETAIL);
+		tail.push_back(t);
+	}
 }
 
 bool Snake::has_caught_mouse() const
@@ -48,14 +50,14 @@ void Snake::set_direction(int& dx, int& dy)
 	dx = 0; dy = 0;
 
 	// update coordinate if necessary
-	if (x < p_mouse->get_x())         // if snake on left of mouse
+	if (x < p_mouse->get_x() && !is_at_tail(x+1,y))         // if snake on left of mouse and a tail isn't immediately to the right
 		dx = 1;                        // snake should move right
-	else if (x > p_mouse->get_x())    // if snake on left of mouse
+	else if (x > p_mouse->get_x() && !is_at_tail(x - 1, y))    // if snake on right of mouse and a tail isn't immediately to the left
 		dx = -1;						       // snake should move left
 
-	if (y < p_mouse->get_y())         // if snake is above mouse
+	if (y < p_mouse->get_y() && !is_at_tail(x, y+1))         // if snake is above mouse and a tail isn't immediately below
 		dy = 1;                        // snake should move down
-	else if (y > p_mouse->get_y())    // if snake is below mouse
+	else if (y > p_mouse->get_y() && !is_at_tail(x,y-1))    // if snake is below mouse and a tail isn't immediately above
 		dy = -1;						       // snake should move up
 }
 
@@ -68,20 +70,15 @@ void Snake::position_at_random()
 
 void Snake::move_tail()
 {
-	//for (int i = 2; i > 0; i--)
-	//{
-	//	tail[i].reset_position(tail[i - 1].get_x(), tail[i - 1].get_y());
-	//}
+	for (int t = tail.size()-1; t>0;t--)
+	{
+		tail[t].reset_position(tail[t-1].get_x(), tail[t-1].get_y());
 
-	tail[2].reset_position(tail[1].get_x(), tail[1].get_y());
-	tail[1].reset_position(tail[0].get_x(), tail[0].get_y());
+	}
 	tail[0].reset_position(x, y);
 
 }
-vector<MoveableGridItem> Snake::get_tail() const
-{
-	return tail;
-}
+
 bool Snake::is_at_tail(const int x,const int y)const
 {
 	// is a snaketail at this position?

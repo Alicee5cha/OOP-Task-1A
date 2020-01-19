@@ -10,7 +10,6 @@ public:
 	bool has_caught_mouse() const;
 	//void spot_mouse(Mouse* const p_mouse);
 	void chase_mouse();
-	vector<MoveableGridItem> get_tail() const;
 	RandomNumberGenerator getRNG() const;
 	bool is_at_tail(const int x, const int y) const;
 
@@ -24,6 +23,5 @@ private: // data
 	Mouse* p_mouse;
 	static RandomNumberGenerator rng;
 	vector<MoveableGridItem> tail;
-	MoveableGridItem t1, t2, t3;
 
 };

@@ -5,14 +5,14 @@ using namespace std;
 class Player
 {
 public:
-	Player();
+	Player(string name);
 	//Query
-	string get_name() const;
+	const string get_name() const;
 	int get_score() const;
 	//Update
 	void update_score(int amount);
 private://Data
-	string name;
+	const string name;
 	Score score;
 
 };

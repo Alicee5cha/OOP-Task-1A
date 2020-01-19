@@ -1,8 +1,8 @@
 #include "Game.h"
 
-Game::Game(): snake(&mouse)
+Game::Game(string name): snake(&mouse), player(name)
 {
-    
+
 }
 
 //void Game::set_up()
@@ -32,40 +32,34 @@ vector<vector<char>> Game::prepare_grid()
       for (int col = 1; col <= SIZE; ++col)
       {
          // is the snake at this position?
-         if (snake.is_at_position(row,col))
+         if (snake.is_at_position(col,row))
          {
 			 line.push_back(SNAKEHEAD);
          }
          // is the mouse at this position?
-         else if (mouse.is_at_position(row,col))
+         else if (mouse.is_at_position(col, row))
          {
             line.push_back(MOUSE);
          }
-         else if (nut.is_at_position(row,col))
+         // is the nut at this position?
+         else if (nut.is_at_position(col, row))
          {
              line.push_back(NUT);
          }
+         // is a tail part at this position?
+         else if (snake.is_at_tail(col, row))
+         {
+             line.push_back(SNAKETAIL);
+         }
+         // is a hole at this position?
+         else if (underground.is_at_hole(col, row))
+         {
+             line.push_back(HOLE);
+         }
+         // if there is nothing above at this location it must be a free cell.
          else
          {   
-            //Is there a tail in this position?
-            const bool s_tail = snake.is_at_tail(col, row);
-            //Is there a hole in this position?
-			const bool hole_no = underground.is_at_hole(col,row);
-             
-            if (s_tail)
-            {
-                 line.push_back(s_tail);
-            }
-            else
-			if (hole_no)
-            {
-               line.push_back(HOLE);
-            }
-            else
-            {
-               // none of the above, must be nothing at this position
-               line.push_back(FREECELL);
-            }
+             line.push_back(FREECELL);
          }
       }
 
@@ -89,22 +83,31 @@ void Game::apply_rules()
          mouse.escape_into_hole();
       }
       
-      if (mouse.can_collect_nut(nut))
+      if (mouse.can_collect_nut(nut) &&  mouse.is_at_position(nut.get_x(),nut.get_y()))
       {
               nut.disappear();
       }
    }
 }
 
-bool Game::is_running()
+bool Game::is_running()const
 {
    return mouse.is_alive() && !mouse.has_escaped();
 }
 
 string Game::get_end_reason()
 {
-   if (mouse.has_escaped())
-      return "You escaped underground!";
+    if (mouse.has_escaped())
+    {
+        player.update_score(1);
+        return "You escaped underground!";
+    }
 
-   return "The snake ate you!";
+    player.update_score(-1);
+    return "The snake ate you!";
+}
+
+Player Game::get_player()const
+{
+    return player;
 }

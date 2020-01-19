@@ -21,21 +21,21 @@ void Game::undo_input(int key)
 {
 	if (mouse.is_at_position(SIZE / 2, SIZE / 2))
 	{
+		snake.undo_snake();
 		"No actions to undo";
 
 	}
 	else
 	{
-
 		"Undone last action";
 	}
 }
 
 void Game::cheat(int key)
 {
+	"Cheat mode is ON";
 	mouse.scamper(key);
 	apply_rules();
-	"Cheat mode is ON";
 	player.update_score(0);
 
 }

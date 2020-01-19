@@ -35,6 +35,14 @@ void Snake::chase_mouse()
 
 }
 
+void Snake::undo_snake()
+{
+	int snake_dx, snake_dy;
+
+	//go in that direction
+	update_position(snake_dx -1, snake_dy -1);
+}
+
 void Snake::set_direction(int& dx, int& dy)
 {
 	// pre-condition: The snake needs to know where the mouse is 

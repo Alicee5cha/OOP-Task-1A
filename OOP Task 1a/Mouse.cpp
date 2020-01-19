@@ -2,7 +2,7 @@
 
 Mouse::Mouse():MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),MOUSE)
 {
-   //position_in_middle_of_grid();
+
 }
 
 bool Mouse::is_alive() const

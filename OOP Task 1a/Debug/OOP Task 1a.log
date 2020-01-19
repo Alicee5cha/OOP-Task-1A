@@ -1,9 +1,7 @@
 ﻿  Game.cpp
   Mouse.cpp
-  Nut.cpp
   Snake.cpp
   Source.cpp
   Generating Code...
-Mouse.obj : error LNK2001: unresolved external symbol "private: static class RandomNumberGenerator Mouse::rng" (?rng@Mouse@@0VRandomNumberGenerator@@A)
-Nut.obj : error LNK2001: unresolved external symbol "private: static class RandomNumberGenerator Nut::rng" (?rng@Nut@@0VRandomNumberGenerator@@A)
-C:\Users\Alz\Documents\OOP-Task-1A\Debug\OOP Task 1a.exe : fatal error LNK1120: 2 unresolved externals
+C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Snake.cpp(43): error C4700: uninitialized local variable 'snake_dy' used
+C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Snake.cpp(43): error C4700: uninitialized local variable 'snake_dx' used

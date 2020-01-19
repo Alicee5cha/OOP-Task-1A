@@ -1,2 +1,9 @@
-﻿  Source.cpp
-  OOP Task 1a.vcxproj -> C:\Users\Dylan\Source\Repos\Dallion3K\OOP-Task-1A\Debug\OOP Task 1a.exe
+﻿  Game.cpp
+  Mouse.cpp
+  Nut.cpp
+  Snake.cpp
+  Source.cpp
+  Generating Code...
+Mouse.obj : error LNK2001: unresolved external symbol "private: static class RandomNumberGenerator Mouse::rng" (?rng@Mouse@@0VRandomNumberGenerator@@A)
+Nut.obj : error LNK2001: unresolved external symbol "private: static class RandomNumberGenerator Nut::rng" (?rng@Nut@@0VRandomNumberGenerator@@A)
+C:\Users\Alz\Documents\OOP-Task-1A\Debug\OOP Task 1a.exe : fatal error LNK1120: 2 unresolved externals

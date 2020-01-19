@@ -22,13 +22,15 @@ private:
 	Underground underground;
     Player player;
     void apply_rules();
-    bool got_nut = false;
+    bool got_nut;
 public:
       //Default
 	  void set_up();
 	  Game();
       vector<vector<char>> prepare_grid();
       void process_input(int key);
+	  void undo_input(int key);
+	  void cheat(int key);
       bool is_running();
       //int find_hole_number_at_position(int x, int y);
       string get_end_reason();

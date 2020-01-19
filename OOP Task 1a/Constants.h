@@ -16,3 +16,5 @@
 #define KEY_LEFT  263
 #define KEY_DOWN  264
 #define KEY_UP    265
+#define UNDO	  85
+#define CHEAT	  99

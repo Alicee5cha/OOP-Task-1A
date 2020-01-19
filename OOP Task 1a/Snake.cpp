@@ -7,11 +7,6 @@ RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 Snake::Snake():p_mouse(nullptr),MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),SNAKEHEAD)
 {
-	for (int i = 0; i < 3; i++)
-	{
-		MoveableGridItem tail_piece = MoveableGridItem(x,y,SNAKETAIL);
-		tail.push_back(tail_piece);
-	}
 
 }
 
@@ -49,22 +44,31 @@ void Snake::set_direction(int& dx, int& dy)
 	dx = 0; dy = 0;
 
 	// update coordinate if necessary
-	if (x < p_mouse->get_x())         // if snake on left of mouse
+	if (x < p_mouse->get_x())         // if snake on left of 
+	{
 		dx = 1;                        // snake should move right
+	}
 	else if (x > p_mouse->get_x())    // if snake on left of mouse
+	{
 		dx = -1;						       // snake should move left
-
+	}
 	if (y < p_mouse->get_y())         // if snake is above mouse
+	{
 		dy = 1;                        // snake should move down
+
+	}
 	else if (y > p_mouse->get_y())    // if snake is below mouse
+	{
 		dy = -1;						       // snake should move up
+
+	}
 }
 
 void Snake::update_position(int dx, int dy)
 {
-	move_tail();
 	x += dx;
 	y += dy;
+	move_tail();
 }
 
 void Snake::position_at_random()
@@ -76,12 +80,6 @@ void Snake::position_at_random()
 
 void Snake::move_tail()
 {
-	for (int i = 2; i > 0; i--)
-	{
-		tail[i].update_position(tail[i - 1].get_x(), tail[i - 1].get_y());
-	}
-
-	tail[0].update_position(x, y);
 
 }
 

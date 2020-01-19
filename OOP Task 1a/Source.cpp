@@ -20,6 +20,8 @@ int main()
 			if (IsKeyPressed(KEY_LEFT))   game.process_input(KEY_LEFT);
 			if (IsKeyPressed(KEY_UP))     game.process_input(KEY_UP);
 			if (IsKeyPressed(KEY_DOWN))   game.process_input(KEY_DOWN);
+			if (IsKeyPressed(UNDO))		  game.undo_input(UNDO);
+			if (IsKeyPressed(CHEAT))	  game.cheat(CHEAT);
 		}
 
 		const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));

@@ -1,16 +1,17 @@
 #include "Nut.h"
 
-Nut::Nut():MoveableGridItem(10,5,NUT)
+Nut::Nut():MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),NUT)
 {
 
 }
 
 bool Nut::has_been_collected() const
 {
-	return true;
+	return collected;
 }
 
 void Nut::disappear()
 {
 	collected = true;
+	
 }

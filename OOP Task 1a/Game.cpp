@@ -17,6 +17,29 @@ void Game::process_input(int key)
    apply_rules();
 }
 
+void Game::undo_input(int key)
+{
+	if (mouse.is_at_position(SIZE / 2, SIZE / 2))
+	{
+		"No actions to undo";
+
+	}
+	else
+	{
+
+		"Undone last action";
+	}
+}
+
+void Game::cheat(int key)
+{
+	mouse.scamper(key);
+	apply_rules();
+	"Cheat mode is ON";
+	player.update_score(0);
+
+}
+
 vector<vector<char>> Game::prepare_grid()
 {
    // create the 2D grid
@@ -35,6 +58,7 @@ vector<vector<char>> Game::prepare_grid()
          if (row == snake.get_x() && col == snake.get_x())
          {
 			 line.push_back(SNAKEHEAD);
+
          }
          // is the mouse at this position?
          else if (row == mouse.get_y() && col == mouse.get_x())
@@ -98,7 +122,7 @@ bool Game::is_running()
 
 string Game::get_end_reason()
 {
-   if (mouse.has_escaped())
+   if (mouse.has_escaped() && nut.has_been_collected() == true)
       return "You escaped underground!";
 
    return "The snake ate you!";

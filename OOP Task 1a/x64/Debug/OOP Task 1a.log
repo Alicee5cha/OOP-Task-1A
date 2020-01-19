@@ -1,16 +1,25 @@
-﻿  FixedGridItem.cpp
-  Game.cpp
-C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Game.cpp(4,1): error C2512: 'Player': no appropriate default constructor available
-  GridItem.cpp
-  Hole.cpp
-  Mouse.cpp
-  MoveableGridItem.cpp
-  Nut.cpp
-  Player.cpp
-  RandomNumberGenerator.cpp
-  Score.cpp
-  Snake.cpp
-  Source.cpp
+﻿  GridItem.cpp
   Underground.cpp
   Generating Code...
-C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Player.h(5,7): message : see declaration of 'Player'
+Game.obj : error LNK2019: unresolved external symbol "public: int __cdecl Mouse::get_x(void)const " (?get_x@Mouse@@QEBAHXZ) referenced in function "public: class std::vector<class std::vector<char,class std::allocator<char> >,class std::allocator<class std::vector<char,class std::allocator<char> > > > __cdecl Game::prepare_grid(void)" (?prepare_grid@Game@@QEAA?AV?$vector@V?$vector@DV?$allocator@D@std@@@std@@V?$allocator@V?$vector@DV?$allocator@D@std@@@std@@@2@@std@@XZ)
+Game.obj : error LNK2019: unresolved external symbol "public: int __cdecl Mouse::get_y(void)const " (?get_y@Mouse@@QEBAHXZ) referenced in function "public: class std::vector<class std::vector<char,class std::allocator<char> >,class std::allocator<class std::vector<char,class std::allocator<char> > > > __cdecl Game::prepare_grid(void)" (?prepare_grid@Game@@QEAA?AV?$vector@V?$vector@DV?$allocator@D@std@@@std@@V?$allocator@V?$vector@DV?$allocator@D@std@@@std@@@2@@std@@XZ)
+Game.obj : error LNK2019: unresolved external symbol "public: char __cdecl Mouse::get_symbol(void)const " (?get_symbol@Mouse@@QEBADXZ) referenced in function "public: class std::vector<class std::vector<char,class std::allocator<char> >,class std::allocator<class std::vector<char,class std::allocator<char> > > > __cdecl Game::prepare_grid(void)" (?prepare_grid@Game@@QEAA?AV?$vector@V?$vector@DV?$allocator@D@std@@@std@@V?$allocator@V?$vector@DV?$allocator@D@std@@@std@@@2@@std@@XZ)
+Game.obj : error LNK2019: unresolved external symbol "public: int __cdecl Snake::getY(void)const " (?getY@Snake@@QEBAHXZ) referenced in function "public: class std::vector<class std::vector<char,class std::allocator<char> >,class std::allocator<class std::vector<char,class std::allocator<char> > > > __cdecl Game::prepare_grid(void)" (?prepare_grid@Game@@QEAA?AV?$vector@V?$vector@DV?$allocator@D@std@@@std@@V?$allocator@V?$vector@DV?$allocator@D@std@@@std@@@2@@std@@XZ)
+Game.obj : error LNK2019: unresolved external symbol "public: int __cdecl Snake::getX(void)const " (?getX@Snake@@QEBAHXZ) referenced in function "public: class std::vector<class std::vector<char,class std::allocator<char> >,class std::allocator<class std::vector<char,class std::allocator<char> > > > __cdecl Game::prepare_grid(void)" (?prepare_grid@Game@@QEAA?AV?$vector@V?$vector@DV?$allocator@D@std@@@std@@V?$allocator@V?$vector@DV?$allocator@D@std@@@std@@@2@@std@@XZ)
+Game.obj : error LNK2019: unresolved external symbol "public: char __cdecl Snake::getSymbol(void)const " (?getSymbol@Snake@@QEBADXZ) referenced in function "public: class std::vector<class std::vector<char,class std::allocator<char> >,class std::allocator<class std::vector<char,class std::allocator<char> > > > __cdecl Game::prepare_grid(void)" (?prepare_grid@Game@@QEAA?AV?$vector@V?$vector@DV?$allocator@D@std@@@std@@V?$allocator@V?$vector@DV?$allocator@D@std@@@std@@@2@@std@@XZ)
+Game.obj : error LNK2019: unresolved external symbol "public: __cdecl Player::Player(void)" (??0Player@@QEAA@XZ) referenced in function "public: __cdecl Game::Game(void)" (??0Game@@QEAA@XZ)
+Game.obj : error LNK2019: unresolved external symbol "public: void __cdecl Player::set_name(void)" (?set_name@Player@@QEAAXXZ) referenced in function "public: __cdecl Game::Game(void)" (??0Game@@QEAA@XZ)
+Source.obj : error LNK2019: unresolved external symbol InitWindow referenced in function main
+Source.obj : error LNK2019: unresolved external symbol WindowShouldClose referenced in function main
+Source.obj : error LNK2019: unresolved external symbol GetScreenHeight referenced in function main
+Source.obj : error LNK2019: unresolved external symbol ClearBackground referenced in function main
+Source.obj : error LNK2019: unresolved external symbol BeginDrawing referenced in function main
+Source.obj : error LNK2019: unresolved external symbol EndDrawing referenced in function main
+Source.obj : error LNK2019: unresolved external symbol SetTargetFPS referenced in function main
+Source.obj : error LNK2019: unresolved external symbol IsKeyPressed referenced in function main
+Source.obj : error LNK2019: unresolved external symbol DrawRectangle referenced in function main
+Source.obj : error LNK2019: unresolved external symbol DrawRectangleLines referenced in function main
+Source.obj : error LNK2019: unresolved external symbol DrawText referenced in function main
+Source.obj : error LNK2019: unresolved external symbol "public: __cdecl Game::Game(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Game@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function main
+..\raylib\lib\raylib_static.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\Alz\Documents\OOP-Task-1A\x64\Debug\OOP Task 1a.exe : fatal error LNK1120: 20 unresolved externals

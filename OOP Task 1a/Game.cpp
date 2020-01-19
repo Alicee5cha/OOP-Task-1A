@@ -47,18 +47,16 @@ vector<vector<char>> Game::prepare_grid()
          }
          else
          {   
-             // is a snaketail at this position?
-             for each (MoveableGridItem t in snake.get_tail())
-             {
-                 if (t.is_at_position(row, col))
-                 {
-                     line.push_back(SNAKETAIL);
-                 }
-             }
-            // is there a hole at this position?
-            //const int hole_no = find_hole_number_at_position(col, row);
-			const bool hole_no = underground.isAtHole(col,row);
-            
+             //Is there a tail in this position?
+             const bool s_tail = snake.is_at_tail(col, row);
+            //Is there a hole in this position?
+			const bool hole_no = underground.is_at_hole(col,row);
+             
+            if (s_tail)
+            {
+                 line.push_back(s_tail);
+            }
+            else
 			if (hole_no)
             {
                line.push_back(HOLE);
@@ -91,7 +89,7 @@ void Game::apply_rules()
          mouse.escape_into_hole();
       }
       
-      if (!mouse.can_collect_nut(nut))
+      if (mouse.can_collect_nut(nut))
       {
               nut.disappear();
       }

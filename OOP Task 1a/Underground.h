@@ -38,6 +38,6 @@ private:
 		//vector<Hole> getHoles();
 		//void set_hole_no_at_position(int no, int x, int y);
 		//const int getNumberOfHoles() const;
-		bool isAtHole(const int x, const int y) const;
+		bool is_at_hole(const int x, const int y) const;
 	
 };

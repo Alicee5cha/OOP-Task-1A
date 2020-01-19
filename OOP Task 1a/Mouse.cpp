@@ -17,7 +17,7 @@ bool Mouse::has_escaped() const
 
 bool Mouse::has_reached_a_hole(const Underground ug) const
 {
-	return ug.isAtHole(x,y);
+	return ug.is_at_hole(x,y);
 }
 
 void Mouse::die()
@@ -76,5 +76,5 @@ void Mouse::position_in_middle_of_grid()
 
 bool Mouse::can_collect_nut(Nut nut)const 
 {
-    return nut.has_been_collected();
+    return !nut.has_been_collected();
 }

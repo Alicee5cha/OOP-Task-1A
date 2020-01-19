@@ -17,13 +17,13 @@ bool Snake::has_caught_mouse() const
 	return is_at_position(p_mouse->get_x(), p_mouse->get_y());
 }
 
-void Snake::spot_mouse(Mouse* const p_mouse)
-{
-	// pre-condition: the mouse needs to exist 
-	assert(p_mouse != nullptr);
-
-	this->p_mouse = p_mouse;
-}
+//void Snake::spot_mouse(Mouse* const p_mouse)
+//{
+//	// pre-condition: the mouse needs to exist 
+//	assert(p_mouse != nullptr);
+//
+//	this->p_mouse = p_mouse;
+//}
 
 void Snake::chase_mouse()
 {
@@ -78,11 +78,22 @@ void Snake::move_tail()
 	tail[0].reset_position(x, y);
 
 }
-vector<MoveableGridItem> Snake::get_tail()
+vector<MoveableGridItem> Snake::get_tail() const
 {
 	return tail;
 }
-
+bool Snake::is_at_tail(const int x,const int y)const
+{
+	// is a snaketail at this position?
+	for each (MoveableGridItem t in tail)
+	{
+		if (t.is_at_position(x,y))
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 RandomNumberGenerator Snake::getRNG() const
 {

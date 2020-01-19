@@ -8,11 +8,11 @@ class Snake:public MoveableGridItem {
 public:
 	Snake(Mouse* const p_mouse);
 	bool has_caught_mouse() const;
-	void spot_mouse(Mouse* const p_mouse);
+	//void spot_mouse(Mouse* const p_mouse);
 	void chase_mouse();
-	vector<MoveableGridItem> get_tail();
+	vector<MoveableGridItem> get_tail() const;
 	RandomNumberGenerator getRNG() const;
-
+	bool is_at_tail(const int x, const int y) const;
 
 private: // util functions
 	void set_direction(int& dx, int& dy);

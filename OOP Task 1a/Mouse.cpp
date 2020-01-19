@@ -1,28 +1,8 @@
 #include "Mouse.h"
 
-Mouse::Mouse() : symbol(MOUSE), x(0), y(0), alive(true), escaped(false), mouse_dx(0), mouse_dy(0)
+Mouse::Mouse():MoveableGridItem(SIZE/2,SIZE/2,MOUSE)
 {
-   position_in_middle_of_grid();
-}
-
-int Mouse::get_x() const
-{
-   return x;
-}
-
-int Mouse::get_y() const
-{
-   return y;
-}
-
-char Mouse::get_symbol() const
-{
-   return symbol;
-}
-
-bool Mouse::is_at_position(int x, int y)
-{
-   return this->x == x && this->y == y;
+   //position_in_middle_of_grid();
 }
 
 bool Mouse::is_alive() const
@@ -37,18 +17,7 @@ bool Mouse::has_escaped() const
 
 bool Mouse::has_reached_a_hole(const Underground ug) const
 {
-   //for (int h_no = 0; h_no < (int) ug.getNumberOfHoles(); ++h_no)
-   //{
-   //   Hole h = ug.get_hole_no(h_no);
-
-   //   if (is_at_position(h.get_x(), h.get_y()))
-   //   {
-   //      return true;
-   //   }
-   //}
-   //return false;
 	return ug.isAtHole(x,y);
-
 }
 
 void Mouse::die()

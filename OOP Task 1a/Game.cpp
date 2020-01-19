@@ -1,8 +1,8 @@
 #include "Game.h"
 
-Game::Game()
+Game::Game(string name)
 {
-    player.set_name();
+    
 }
 
 void Game::set_up()
@@ -32,9 +32,9 @@ vector<vector<char>> Game::prepare_grid()
       for (int col = 1; col <= SIZE; ++col)
       {
          // is the snake at this position?
-         if (row == snake.getY() && col == snake.getX())
+         if (row == snake.get_x() && col == snake.get_x())
          {
-			 line.push_back(snake.getSymbol());
+			 line.push_back(snake.get_symbol());
          }
          // is the mouse at this position?
          else if (row == mouse.get_y() && col == mouse.get_x())

@@ -1,6 +1,5 @@
 #include "Player.h"
-#include <iostream>
-Player::Player()
+Player::Player(string name):name(name)
 {
 
 }
@@ -18,9 +17,4 @@ int Player::get_score() const
 void Player::update_score(int amount)
 {
 	score.update_amount(amount);
-}
-
-void Player::set_name()
-{
-	cin >> name;
 }

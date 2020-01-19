@@ -1,23 +1,12 @@
 #include "Snake.h"
-#include "Constants.h"
 #include "Mouse.h"
 #include "RandomNumberGenerator.h"
 
 RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 
-Snake::Snake():p_mouse(nullptr)
+Snake::Snake():p_mouse(nullptr),MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),SNAKEHEAD)
 {
-	//symbol = SNAKEHEAD;//Now declared in header as is const
-	position_at_random();
-
-	// make the pointer safe before the snake spots the mouse
-	//p_mouse = nullptr;
-}
-
-bool Snake::is_at_position(const int x, const int y) const
-{
-	return (this->x == x) && (this->y == y);
 }
 
 bool Snake::has_caught_mouse() const
@@ -73,24 +62,13 @@ void Snake::update_position(int dx, int dy)
 void Snake::position_at_random()
 {
 	// WARNING: this may place on top of other things
-
 	x = rng.get_random_value(SIZE);
 	y = rng.get_random_value(SIZE);
 }
 
-int Snake::getX() const
+void Snake::move_tail(vector<char> tail)
 {
-	return x;
-}
 
-int Snake::getY() const
-{
-	return y;
-}
-
-char Snake::getSymbol() const
-{
-	return symbol;
 }
 
 RandomNumberGenerator Snake::getRNG() const

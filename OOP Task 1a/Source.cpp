@@ -7,7 +7,10 @@ int main()
 	InitWindow(900, 600, "OOP Assignment 1");
 	SetTargetFPS(144);
 
-	Game game;
+	string name;
+	cout << "Please enter your name: ";
+	cin >> name;
+	Game game(name);
 	game.set_up();
 	while (!WindowShouldClose())
 	{

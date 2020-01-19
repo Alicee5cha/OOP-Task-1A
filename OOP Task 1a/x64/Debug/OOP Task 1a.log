@@ -1,15 +1,12 @@
-﻿  Player.cpp
+﻿  Game.cpp
+  Mouse.cpp
+  Player.cpp
+  RandomNumberGenerator.cpp
   Score.cpp
+  Snake.cpp
+  Source.cpp
+  Underground.cpp
   Generating Code...
-Player.obj : error LNK2005: "public: __cdecl Score::Score(void)" (??0Score@@QEAA@XZ) already defined in Game.obj
-Player.obj : error LNK2005: "public: int __cdecl Score::get_amount(void)const " (?get_amount@Score@@QEBAHXZ) already defined in Game.obj
-Player.obj : error LNK2005: "public: void __cdecl Score::update_amount(int)" (?update_amount@Score@@QEAAXH@Z) already defined in Game.obj
-Score.obj : error LNK2005: "public: __cdecl Score::Score(void)" (??0Score@@QEAA@XZ) already defined in Game.obj
-Score.obj : error LNK2005: "public: int __cdecl Score::get_amount(void)const " (?get_amount@Score@@QEBAHXZ) already defined in Game.obj
-Score.obj : error LNK2005: "public: void __cdecl Score::update_amount(int)" (?update_amount@Score@@QEAAXH@Z) already defined in Game.obj
-Source.obj : error LNK2005: "public: __cdecl Score::Score(void)" (??0Score@@QEAA@XZ) already defined in Game.obj
-Source.obj : error LNK2005: "public: int __cdecl Score::get_amount(void)const " (?get_amount@Score@@QEBAHXZ) already defined in Game.obj
-Source.obj : error LNK2005: "public: void __cdecl Score::update_amount(int)" (?update_amount@Score@@QEAAXH@Z) already defined in Game.obj
 Source.obj : error LNK2019: unresolved external symbol InitWindow referenced in function main
 Source.obj : error LNK2019: unresolved external symbol WindowShouldClose referenced in function main
 Source.obj : error LNK2019: unresolved external symbol GetScreenHeight referenced in function main
@@ -22,4 +19,4 @@ Source.obj : error LNK2019: unresolved external symbol DrawRectangle referenced 
 Source.obj : error LNK2019: unresolved external symbol DrawRectangleLines referenced in function main
 Source.obj : error LNK2019: unresolved external symbol DrawText referenced in function main
 ..\raylib\lib\raylib_static.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\Dylan\Desktop\Due Assignments 2020\Object Oriented Programming\OOP Task 1a\x64\Debug\OOP Task 1a.exe : fatal error LNK1120: 11 unresolved externals
+C:\Users\Dylan\Source\Repos\Dallion3K\OOP-Task-1A\x64\Debug\OOP Task 1a.exe : fatal error LNK1120: 11 unresolved externals

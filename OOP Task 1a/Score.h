@@ -9,5 +9,5 @@ public:
 	//Update
 	void update_amount(int amount);
 private://Data
-	int amount;
+	int amount = 0;
 };

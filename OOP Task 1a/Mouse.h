@@ -1,18 +1,14 @@
 #pragma once
 
-#include "constants.h"
 #include "Underground.h"
-
-class Mouse
+#include "MoveableGridItem.h"
+class Mouse:public MoveableGridItem
 {
 	public:
 		// constructor
 		Mouse();
 
 		// accessors
-		int get_x() const;
-		int get_y() const;
-		char get_symbol() const;
 		bool is_alive() const;
 		bool has_escaped() const;
 		bool has_reached_a_hole(const Underground ug) const;
@@ -22,17 +18,12 @@ class Mouse
 		void escape_into_hole();
 		void scamper(int key);
 
-
-
 	private:
 		// data members
-		int  x, y;
-		const char symbol = MOUSE;
-		bool alive;
-		bool escaped;
-		bool is_at_position(int x, int y);
-		int mouse_dx;
-		int mouse_dy;
+		bool alive = true;
+		bool escaped = false;
+		int mouse_dx = 0;
+		int mouse_dy = 0;
 
 		// supporting functions 
 		void position_in_middle_of_grid();

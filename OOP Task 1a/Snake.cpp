@@ -78,6 +78,11 @@ void Snake::position_at_random()
 	y = rng.get_random_value(SIZE);
 }
 
+void Snake::move_tail(vector<char> tail)
+{
+
+}
+
 int Snake::getX() const
 {
 	return x;

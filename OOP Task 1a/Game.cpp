@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(string name)
+Game::Game()
 {
     
 }
@@ -86,9 +86,14 @@ void Game::apply_rules()
    }
    else
    {
-      if (mouse.has_reached_a_hole(underground))
+      if (mouse.has_reached_a_hole(underground) && nut.has_been_collected())
       {
          mouse.escape_into_hole();
+      }
+      else
+      if (!mouse.can_collect_nut(nut))
+      {
+              nut.disappear();
       }
    }
 }

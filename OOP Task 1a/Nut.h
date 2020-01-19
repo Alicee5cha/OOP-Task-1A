@@ -5,7 +5,7 @@ class Nut:public MoveableGridItem
 private:
 	bool collected = false;
 public:
-	Nut(int x, int y);
+	Nut();
 	bool has_been_collected() const;
 	void disappear();
 

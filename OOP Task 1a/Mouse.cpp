@@ -73,3 +73,8 @@ void Mouse::position_in_middle_of_grid()
    x = SIZE / 2;
    y = SIZE / 2;
 }
+
+bool Mouse::can_collect_nut(Nut nut)const 
+{
+    return nut.has_been_collected();
+}

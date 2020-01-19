@@ -7,10 +7,7 @@ int main()
 	InitWindow(900, 600, "OOP Assignment 1");
 	SetTargetFPS(144);
 
-	string name;
-	cout << "Please enter your name: ";
-	cin >> name;
-	Game game(name);
+	Game game;
 	game.set_up();
 	while (!WindowShouldClose())
 	{
@@ -23,30 +20,6 @@ int main()
 			if (IsKeyPressed(KEY_LEFT))   game.process_input(KEY_LEFT);
 			if (IsKeyPressed(KEY_UP))     game.process_input(KEY_UP);
 			if (IsKeyPressed(KEY_DOWN))   game.process_input(KEY_DOWN);
-		}
-		else
-		{
-			DrawText(game.get_end_reason().c_str(), 610, 10, 20, LIGHTGRAY);
-			DrawText("Play Again Y or N?", 610, 30, 20, LIGHTGRAY);
-			string input = "";
-			while (!(input == "Y" || input == "N"))
-			{
-				cin >> input;
-				for (int i = 0; i < input.length(); i++)
-				{
-					input[i] = toupper(input[i]);
-				}
-				if (!(input == "Y" || input == "N"))
-					cout << "\nInput not valid please try again...\n";
-
-			}
-			if (input == "Y")
-			{
-				game.set_up();
-			}
-			else
-			CloseWindow();
-			
 		}
 
 		const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
@@ -66,6 +39,8 @@ int main()
 					case SNAKEHEAD:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED);       break;
 					case MOUSE:      DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);     break;
 					case FREECELL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN); break;
+					case NUT:		 DrawRectangle(xPosition, yPosition, cellSize, cellSize, BROWN);	 break;
+					case SNAKETAIL:	 DrawRectangle(xPosition, yPosition, cellSize, cellSize, PURPLE);	 break;
 					default:         assert(false); // if this assert triggers there's an unrecognised tile on the grid!
 				}
 

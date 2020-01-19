@@ -8,6 +8,8 @@
 #include "Snake.h"
 #include "Underground.h"
 #include "Player.h"
+#include "Nut.h"
+#include "Hole.h"
 
 using namespace std;
 
@@ -16,6 +18,7 @@ class Game
 private:
 	Mouse mouse;
 	Snake snake;
+    Nut nut;
 	Underground underground;
     Player player;
     void apply_rules();
@@ -23,7 +26,7 @@ private:
 public:
       //Default
 	  void set_up();
-	  Game(string name);
+	  Game();
       vector<vector<char>> prepare_grid();
       void process_input(int key);
       bool is_running();

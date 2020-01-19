@@ -2,28 +2,26 @@
 
 #include <cassert>
 #include <vector>
-
-#include "constants.h"
-
+#include "Hole.h"
 using namespace std;
 
-class Hole
-{
-	public:
-		// constructors
-		Hole(int x, int y);
-
-		// accessors
-		int get_x() const;
-		int get_y() const;
-		char get_symbol() const;
-		bool is_at_position(int x, int y) const;
-
-	private:
-		// data members
-		const char symbol = HOLE;
-		int x, y;
-};
+//class Hole
+//{
+//	public:
+//		// constructors
+//		Hole(int x, int y);
+//
+//		// accessors
+//		int get_x() const;
+//		int get_y() const;
+//		char get_symbol() const;
+//		bool is_at_position(int x, int y) const;
+//
+//	private:
+//		// data members
+//		const char symbol = HOLE;
+//		int x, y;
+//};
 
 class Underground
 {

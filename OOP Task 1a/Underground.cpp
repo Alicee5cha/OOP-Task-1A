@@ -1,31 +1,32 @@
 #include "Underground.h"
 
-Hole::Hole(int x, int y) :x(x),y(y)
-{
-	//symbol = HOLE;
-	//this->x = x;
-	//this->y = y;
-}
-
-int Hole::get_x() const
-{
-	return x;
-}
-
-int Hole::get_y() const
-{
-	return y;
-}
-
-char Hole::get_symbol() const
-{
-	return symbol;
-}
-
-bool Hole::is_at_position(int x, int y) const
-{
-	return this->x == x && this->y == y;
-}
+//
+//Hole::Hole(int x, int y) :x(x),y(y)
+//{
+//	//symbol = HOLE;
+//	//this->x = x;
+//	//this->y = y;
+//}
+//
+//int Hole::get_x() const
+//{
+//	return x;
+//}
+//
+//int Hole::get_y() const
+//{
+//	return y;
+//}
+//
+//char Hole::get_symbol() const
+//{
+//	return symbol;
+//}
+//
+//bool Hole::is_at_position(int x, int y) const
+//{
+//	return this->x == x && this->y == y;
+//}
 
 // number of holes in underground
 //static const int MAXHOLES(3);

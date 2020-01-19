@@ -1,6 +1,6 @@
 #include "Nut.h"
 
-Nut::Nut(int x, int y):MoveableGridItem(x,y,NUT)
+Nut::Nut():MoveableGridItem(10,5,NUT)
 {
 
 }
@@ -12,5 +12,5 @@ bool Nut::has_been_collected() const
 
 void Nut::disappear()
 {
-
+	collected = true;
 }

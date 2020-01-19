@@ -7,6 +7,12 @@ RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 Snake::Snake():p_mouse(nullptr),MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),SNAKEHEAD)
 {
+	for (int i = 0; i < 3; i++)
+	{
+		MoveableGridItem tail_piece = MoveableGridItem(x,y,SNAKETAIL);
+		tail.push_back(tail_piece);
+	}
+
 }
 
 bool Snake::has_caught_mouse() const
@@ -31,6 +37,7 @@ void Snake::chase_mouse()
 
 	//go in that direction
 	update_position(snake_dx, snake_dy);
+
 }
 
 void Snake::set_direction(int& dx, int& dy)
@@ -55,6 +62,7 @@ void Snake::set_direction(int& dx, int& dy)
 
 void Snake::update_position(int dx, int dy)
 {
+	move_tail();
 	x += dx;
 	y += dy;
 }
@@ -66,8 +74,14 @@ void Snake::position_at_random()
 	y = rng.get_random_value(SIZE);
 }
 
-void Snake::move_tail(vector<char> tail)
+void Snake::move_tail()
 {
+	for (int i = 2; i > 0; i--)
+	{
+		tail[i].update_position(tail[i - 1].get_x(), tail[i - 1].get_y());
+	}
+
+	tail[0].update_position(x, y);
 
 }
 

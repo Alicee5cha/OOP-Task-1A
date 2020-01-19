@@ -25,12 +25,11 @@ private:
     bool got_nut = false;
 public:
       //Default
-	  void set_up();
+	  //void set_up();
 	  Game();
       vector<vector<char>> prepare_grid();
       void process_input(int key);
       bool is_running();
       //int find_hole_number_at_position(int x, int y);
       string get_end_reason();
-      bool can_collect_nut() const;
 };

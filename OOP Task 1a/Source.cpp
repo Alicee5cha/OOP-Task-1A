@@ -8,7 +8,8 @@ int main()
 	SetTargetFPS(144);
 
 	Game game;
-	game.set_up();
+	//game.set_up();
+
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
@@ -20,6 +21,10 @@ int main()
 			if (IsKeyPressed(KEY_LEFT))   game.process_input(KEY_LEFT);
 			if (IsKeyPressed(KEY_UP))     game.process_input(KEY_UP);
 			if (IsKeyPressed(KEY_DOWN))   game.process_input(KEY_DOWN);
+		}
+		else
+		{
+			DrawText(game.get_end_reason().c_str(), 610, 10, 20, LIGHTGRAY);
 		}
 
 		const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));

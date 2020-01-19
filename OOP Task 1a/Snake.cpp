@@ -5,14 +5,11 @@
 RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 
-Snake::Snake():p_mouse(nullptr),MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),SNAKEHEAD)
+Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD), t1(x-1,y,SNAKETAIL), t2(x - 1, y-1, SNAKETAIL), t3(x, y-1, SNAKETAIL)
 {
-	for (int i = 0; i < 3; i++)
-	{
-		MoveableGridItem tail_piece = MoveableGridItem(x,y,SNAKETAIL);
-		tail.push_back(tail_piece);
-	}
-
+	tail.push_back(t1);
+	tail.push_back(t2);
+	tail.push_back(t3);
 }
 
 bool Snake::has_caught_mouse() const
@@ -20,17 +17,19 @@ bool Snake::has_caught_mouse() const
 	return is_at_position(p_mouse->get_x(), p_mouse->get_y());
 }
 
-void Snake::spot_mouse(Mouse* const p_mouse)
-{
-	// pre-condition: the mouse needs to exist 
-	assert(p_mouse != nullptr);
-
-	this->p_mouse = p_mouse;
-}
+//void Snake::spot_mouse(Mouse* const p_mouse)
+//{
+//	// pre-condition: the mouse needs to exist 
+//	assert(p_mouse != nullptr);
+//
+//	this->p_mouse = p_mouse;
+//}
 
 void Snake::chase_mouse()
 {
 	int snake_dx, snake_dy;
+	//Move tail
+	move_tail();
 
 	//identify direction of travel
 	set_direction(snake_dx, snake_dy);
@@ -60,13 +59,6 @@ void Snake::set_direction(int& dx, int& dy)
 		dy = -1;						       // snake should move up
 }
 
-void Snake::update_position(int dx, int dy)
-{
-	move_tail();
-	x += dx;
-	y += dy;
-}
-
 void Snake::position_at_random()
 {
 	// WARNING: this may place on top of other things
@@ -76,13 +68,31 @@ void Snake::position_at_random()
 
 void Snake::move_tail()
 {
-	for (int i = 2; i > 0; i--)
+	//for (int i = 2; i > 0; i--)
+	//{
+	//	tail[i].reset_position(tail[i - 1].get_x(), tail[i - 1].get_y());
+	//}
+
+	tail[2].reset_position(tail[1].get_x(), tail[1].get_y());
+	tail[1].reset_position(tail[0].get_x(), tail[0].get_y());
+	tail[0].reset_position(x, y);
+
+}
+vector<MoveableGridItem> Snake::get_tail() const
+{
+	return tail;
+}
+bool Snake::is_at_tail(const int x,const int y)const
+{
+	// is a snaketail at this position?
+	for each (MoveableGridItem t in tail)
 	{
-		tail[i].update_position(tail[i - 1].get_x(), tail[i - 1].get_y());
+		if (t.is_at_position(x,y))
+		{
+			return true;
+		}
 	}
-
-	tail[0].update_position(x, y);
-
+	return false;
 }
 
 RandomNumberGenerator Snake::getRNG() const

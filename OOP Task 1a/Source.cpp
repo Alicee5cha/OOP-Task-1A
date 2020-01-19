@@ -21,6 +21,10 @@ int main()
 			if (IsKeyPressed(KEY_UP))     game.process_input(KEY_UP);
 			if (IsKeyPressed(KEY_DOWN))   game.process_input(KEY_DOWN);
 		}
+		else
+		{
+		
+		}
 
 		const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
 

@@ -8,7 +8,8 @@ int main()
 	SetTargetFPS(144);
 
 	Game game;
-	game.set_up();
+	//game.set_up();
+
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();

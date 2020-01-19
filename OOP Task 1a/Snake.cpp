@@ -5,14 +5,11 @@
 RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 
-Snake::Snake():p_mouse(nullptr),MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),SNAKEHEAD)
+Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD), t1(x-1,y,SNAKETAIL), t2(x - 1, y-1, SNAKETAIL), t3(x, y-1, SNAKETAIL)
 {
-	for (int i = 0; i < 3; i++)
-	{
-		MoveableGridItem tail_piece = MoveableGridItem(x,y,SNAKETAIL);
-		tail.push_back(tail_piece);
-	}
-
+	tail.push_back(t1);
+	tail.push_back(t2);
+	tail.push_back(t3);
 }
 
 bool Snake::has_caught_mouse() const
@@ -38,6 +35,8 @@ void Snake::chase_mouse()
 	//go in that direction
 	update_position(snake_dx, snake_dy);
 
+	//Move tail
+	move_tail();
 }
 
 void Snake::set_direction(int& dx, int& dy)
@@ -60,13 +59,6 @@ void Snake::set_direction(int& dx, int& dy)
 		dy = -1;						       // snake should move up
 }
 
-void Snake::update_position(int dx, int dy)
-{
-	move_tail();
-	x += dx;
-	y += dy;
-}
-
 void Snake::position_at_random()
 {
 	// WARNING: this may place on top of other things
@@ -78,10 +70,10 @@ void Snake::move_tail()
 {
 	for (int i = 2; i > 0; i--)
 	{
-		tail[i].update_position(tail[i - 1].get_x(), tail[i - 1].get_y());
+		tail[i].reset_position(tail[i - 1].get_x(), tail[i - 1].get_y());
 	}
 
-	tail[0].update_position(x, y);
+	tail[0].reset_position(x, y);
 
 }
 

@@ -1,14 +1,14 @@
 #include "Game.h"
 
-Game::Game()
+Game::Game(): snake(&mouse)
 {
     
 }
 
-void Game::set_up()
-{
-    snake.spot_mouse(&mouse);
-}
+//void Game::set_up()
+//{
+//    snake.spot_mouse(&mouse);
+//}
 
 void Game::process_input(int key)
 {

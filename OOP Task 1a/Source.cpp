@@ -23,7 +23,7 @@ int main()
 		}
 		else
 		{
-		
+			DrawText(game.get_end_reason().c_str(), 610, 10, 20, LIGHTGRAY);
 		}
 
 		const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));

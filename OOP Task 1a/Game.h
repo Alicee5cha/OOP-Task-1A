@@ -32,5 +32,4 @@ public:
       bool is_running();
       //int find_hole_number_at_position(int x, int y);
       string get_end_reason();
-      bool can_collect_nut() const;
 };

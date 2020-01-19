@@ -47,8 +47,8 @@ vector<vector<char>> Game::prepare_grid()
          }
          else
          {   
-             //Is there a tail in this position?
-             const bool s_tail = snake.is_at_tail(col, row);
+            //Is there a tail in this position?
+            const bool s_tail = snake.is_at_tail(col, row);
             //Is there a hole in this position?
 			const bool hole_no = underground.is_at_hole(col,row);
              

@@ -1,6 +1,6 @@
 #include "Score.h"
 
-Score::Score()
+Score::Score():amount(0)
 {
 
 }

@@ -34,12 +34,17 @@ vector<vector<char>> Game::prepare_grid()
          // is the snake at this position?
          if (row == snake.get_x() && col == snake.get_x())
          {
-			 line.push_back(snake.get_symbol());
+			 line.push_back(SNAKEHEAD);
          }
          // is the mouse at this position?
          else if (row == mouse.get_y() && col == mouse.get_x())
          {
-            line.push_back(mouse.get_symbol());
+            line.push_back(MOUSE);
+         }
+         else
+         if (row == nut.get_x() && col == nut.get_y())
+         {
+             line.push_back(NUT);
          }
          else
          {
@@ -66,18 +71,6 @@ vector<vector<char>> Game::prepare_grid()
    return grid;
 }
 
-//int Game::find_hole_number_at_position(int x, int y)
-//{
-//   //for (size_t h_no = 0; h_no < underground.getNumberOfHoles(); ++h_no)
-//   //{
-//      if (underground.isAtHole(x,y))
-//      {
-//         return underground.getHoleNum(x,y);
-//      }
-//   //}
-//   return -1; // not a hole
-//}
-
 void Game::apply_rules()
 {
    if (snake.has_caught_mouse())
@@ -90,7 +83,7 @@ void Game::apply_rules()
       {
          mouse.escape_into_hole();
       }
-      else
+      
       if (!mouse.can_collect_nut(nut))
       {
               nut.disappear();

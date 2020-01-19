@@ -28,6 +28,8 @@ void Snake::spot_mouse(Mouse* const p_mouse)
 void Snake::chase_mouse()
 {
 	int snake_dx, snake_dy;
+	//Move tail
+	move_tail();
 
 	//identify direction of travel
 	set_direction(snake_dx, snake_dy);
@@ -35,8 +37,6 @@ void Snake::chase_mouse()
 	//go in that direction
 	update_position(snake_dx, snake_dy);
 
-	//Move tail
-	move_tail();
 }
 
 void Snake::set_direction(int& dx, int& dy)
@@ -68,14 +68,21 @@ void Snake::position_at_random()
 
 void Snake::move_tail()
 {
-	for (int i = 2; i > 0; i--)
-	{
-		tail[i].reset_position(tail[i - 1].get_x(), tail[i - 1].get_y());
-	}
+	//for (int i = 2; i > 0; i--)
+	//{
+	//	tail[i].reset_position(tail[i - 1].get_x(), tail[i - 1].get_y());
+	//}
 
+	tail[2].reset_position(tail[1].get_x(), tail[1].get_y());
+	tail[1].reset_position(tail[0].get_x(), tail[0].get_y());
 	tail[0].reset_position(x, y);
 
 }
+vector<MoveableGridItem> Snake::get_tail()
+{
+	return tail;
+}
+
 
 RandomNumberGenerator Snake::getRNG() const
 {

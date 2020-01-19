@@ -10,7 +10,7 @@ public:
 	bool has_caught_mouse() const;
 	void spot_mouse(Mouse* const p_mouse);
 	void chase_mouse();
-
+	vector<MoveableGridItem> get_tail();
 	RandomNumberGenerator getRNG() const;
 
 

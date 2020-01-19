@@ -32,22 +32,29 @@ vector<vector<char>> Game::prepare_grid()
       for (int col = 1; col <= SIZE; ++col)
       {
          // is the snake at this position?
-         if (row == snake.get_x() && col == snake.get_x())
+         if (snake.is_at_position(row,col))
          {
 			 line.push_back(SNAKEHEAD);
          }
          // is the mouse at this position?
-         else if (row == mouse.get_y() && col == mouse.get_x())
+         else if (mouse.is_at_position(row,col))
          {
             line.push_back(MOUSE);
          }
-         else
-         if (row == nut.get_x() && col == nut.get_y())
+         else if (nut.is_at_position(row,col))
          {
              line.push_back(NUT);
          }
          else
-         {
+         {   
+             // is a snaketail at this position?
+             for each (MoveableGridItem t in snake.get_tail())
+             {
+                 if (t.is_at_position(row, col))
+                 {
+                     line.push_back(SNAKETAIL);
+                 }
+             }
             // is there a hole at this position?
             //const int hole_no = find_hole_number_at_position(col, row);
 			const bool hole_no = underground.isAtHole(col,row);

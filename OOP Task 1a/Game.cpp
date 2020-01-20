@@ -7,9 +7,10 @@ Game::Game(string name): snake(&mouse), player(name),is_cheating(false),has_chea
 
 void Game::set_up()
 {
+    got_nut = false;
     snake.reset_position();
-    mouse.reset_position();
-    nut.reset_position();
+    mouse.reset();
+    nut.reset();
 }
 
 void Game::process_input(int key)
@@ -104,7 +105,12 @@ void Game::apply_rules()
 {
    if (snake.has_caught_mouse())
    {
-      mouse.die();
+       if (mouse.is_alive())
+       {
+           mouse.die();
+           player.update_score(-1);
+
+       }
    }
    else
    {
@@ -112,6 +118,8 @@ void Game::apply_rules()
       {
 		  if (nut.has_been_collected()) {
 			  mouse.escape_into_hole();
+              player.update_score(1);
+
 		  }else
 		  {
 			  vector<int> new_position = underground.get_next_hole_coordinates(mouse.get_x(), mouse.get_y());
@@ -135,13 +143,10 @@ string Game::get_end_reason()
 {
     if (mouse.has_escaped())
     {
-        player.update_score(1);
-		cout << "You escaped underground! \n";
+		
         return "You escaped underground!";
     }
 
-    player.update_score(-1);
-	cout << "The snake ate you! \n";
     return "The snake ate you!";
 }
 

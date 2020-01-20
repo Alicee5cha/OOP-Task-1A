@@ -19,12 +19,12 @@ class Mouse:public MoveableGridItem
 		void die();
 		void escape_into_hole();
 		void scamper(int key);
-
+		void reset();
 	private:
 		// data members
-		bool alive = true;
-		bool escaped = false;
-		int mouse_dx = 0;
-		int mouse_dy = 0;
+		bool alive;
+		bool escaped;
+		int mouse_dx;
+		int mouse_dy;
 
 };

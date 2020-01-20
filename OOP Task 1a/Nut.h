@@ -6,12 +6,10 @@ class Nut:public MoveableGridItem
 {
 private:
 	bool collected = false;
-	static RandomNumberGenerator rng;
 public:
 	Nut();
 	bool has_been_collected() const;
 	void disappear();
-	RandomNumberGenerator getRNG() const;
-
+	void reset();
 };
 

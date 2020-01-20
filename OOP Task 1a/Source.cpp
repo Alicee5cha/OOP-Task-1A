@@ -5,6 +5,7 @@ int main()
 {
 	InitWindow(900, 600, "OOP Assignment 1");
 	SetTargetFPS(144);
+	SetExitKey('N');
 
 	//I'm taking names
 	string name;
@@ -16,7 +17,6 @@ int main()
 	Game game(name);
 	//game.set_up();
 
-	char input = 'Y';
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
@@ -44,8 +44,13 @@ int main()
 		else
 		{
 			DrawText(game.get_end_reason().c_str(), 610, 10, 20, LIGHTGRAY);
-			DrawText("Would you like to play again? Y or N", 610, 35, 20, LIGHTGRAY);
-			input = ' ';
+			DrawText("Play again, y or n?", 610, 90, 20, LIGHTGRAY);
+			
+			if (IsKeyPressed('Y'))
+			{
+				game.set_up();
+			}
+
 		}
 
 		const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
@@ -81,22 +86,9 @@ int main()
 		DrawText(title_1.c_str() , 610, 35, 20, LIGHTGRAY);
 		DrawText(title_2.c_str(), 610, 60, 20, LIGHTGRAY);
 		
-		while (input != 'Y' && input != 'N')
-		{
-			input = toupper(input);
-			if (input == 'Y')
-			{
-				game.set_up();
-				
-			}
-			else
-				if (input == 'N')
-				{
-					CloseWindow();
-				}
-		}
-
 		EndDrawing();
+
+
 	}
 
 	CloseWindow();

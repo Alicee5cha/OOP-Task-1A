@@ -1,7 +1,7 @@
 #include "Mouse.h"
 
 
-Mouse::Mouse(): MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), MOUSE)
+Mouse::Mouse(): MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), MOUSE),alive(true),escaped(false),mouse_dx(0),mouse_dy(0)
 {
 
 }
@@ -79,4 +79,11 @@ void Mouse::scamper(int key)
 bool Mouse::can_collect_nut(Nut nut)const 
 {
     return !nut.has_been_collected();
+}
+
+void Mouse::reset()
+{
+	alive = true;
+	escaped = false;
+	reset_position();
 }

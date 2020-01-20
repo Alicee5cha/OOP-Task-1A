@@ -1,10 +1,11 @@
 #pragma once
 #include "GridItem.h"
-
+#include "RandomNumberGenerator.h"
 class MoveableGridItem:public GridItem
 {
 protected:
 	int x, y;
+	static RandomNumberGenerator rng;
 
 public:
 	//Query
@@ -13,7 +14,8 @@ public:
 	bool is_at_position(int x, int y)const;
 	//Update
 	MoveableGridItem(int x, int y, const char symbol);
-	void reset_position(int x, int y);
+	void reset_position();
 	void update_position(int dx, int dy);
+	void move_to_position(int x, int y);
 
 };

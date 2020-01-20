@@ -8,6 +8,5 @@ public:
 	Nut();
 	bool has_been_collected() const;
 	void disappear();
-
 };
 

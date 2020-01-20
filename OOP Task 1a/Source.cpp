@@ -10,6 +10,7 @@ int main()
 	string name;
 	cout << "Please enter your name: ";
 	cin >> name;
+
 	//And giving them to games.
 	Game game(name);
 	//game.set_up();
@@ -63,16 +64,22 @@ int main()
 
 		//Draw texts (score, name, etc...)
 		string title_1 = "Name: " + name;
+		string title_2 = "Score: " + game.get_player().get_score();
 		DrawText(title_1.c_str() , 610, 35, 20, LIGHTGRAY);
-		DrawText("Score: " + game.get_player().get_score(), 610, 60, 20, LIGHTGRAY);
+		DrawText(title_2.c_str(), 610, 60, 20, LIGHTGRAY);
 		
 		while (input != 'Y' && input != 'N')
 		{
 			input = getchar() | 32; //"or"ed with 32 acts like "toupper" for a char. y-->Y but Y-/->y
 			if (input == 'Y')
 			{
-
+				game.set_up();
 			}
+			else
+				if (input == 'N')
+				{
+					CloseWindow();
+				}
 		}
 
 		EndDrawing();

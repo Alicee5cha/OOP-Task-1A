@@ -2,7 +2,7 @@
 #include "Mouse.h"
 #include "RandomNumberGenerator.h"
 
-RandomNumberGenerator Snake::rng = RandomNumberGenerator();
+//RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 
 Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD)
@@ -72,10 +72,10 @@ void Snake::move_tail()
 {
 	for (int t = tail.size()-1; t>0;t--)
 	{
-		tail[t].reset_position(tail[t-1].get_x(), tail[t-1].get_y());
+		tail[t].move_to_position(tail[t-1].get_x(), tail[t-1].get_y());
 
 	}
-	tail[0].reset_position(x, y);
+	tail[0].move_to_position(x, y);
 
 }
 
@@ -92,7 +92,8 @@ bool Snake::is_at_tail(const int x,const int y)const
 	return false;
 }
 
-RandomNumberGenerator Snake::getRNG() const
-{
-	return rng;
-}
+
+//RandomNumberGenerator Snake::getRNG() const
+//{
+//	return rng;
+//}

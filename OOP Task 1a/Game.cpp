@@ -5,10 +5,12 @@ Game::Game(string name): snake(&mouse), player(name)
 
 }
 
-//void Game::set_up()
-//{
-//    snake.spot_mouse(&mouse);
-//}
+void Game::set_up()
+{
+    snake.reset_position();
+    mouse.reset_position();
+    nut.reset_position();
+}
 
 void Game::process_input(int key)
 {
@@ -78,9 +80,11 @@ void Game::apply_rules()
    }
    else
    {
-      if (mouse.has_reached_a_hole(underground) && nut.has_been_collected())
+      if (mouse.has_reached_a_hole(underground))
       {
-         mouse.escape_into_hole();
+          if (nut.has_been_collected())
+            mouse.escape_into_hole();
+
       }
       
       if (mouse.can_collect_nut(nut) &&  mouse.is_at_position(nut.get_x(),nut.get_y()))

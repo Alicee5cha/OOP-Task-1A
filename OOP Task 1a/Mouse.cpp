@@ -1,9 +1,7 @@
 #include "Mouse.h"
-#include "RandomNumberGenerator.h"
 
-RandomNumberGenerator Mouse::rng = RandomNumberGenerator();
 
-Mouse::Mouse(): MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), MOUSE),undo_key(false)
+Mouse::Mouse(): MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), MOUSE)
 {
 
 }
@@ -36,7 +34,7 @@ void Mouse::escape_into_hole()
 void Mouse::scamper(int key)
 {
 	//set prev co-ordinates
-	set_px_set_py(mouse_dx, mouse_dy);
+	set_px_set_py(x, y);
 
 	//set next location
    switch (key)
@@ -70,22 +68,7 @@ void Mouse::scamper(int key)
 	}
 }
 
-bool Mouse::undo_move()
-{
-	undo_key = true;
-	return undo_key;
-}
 
-void Mouse::undo_actions()
-{
-	undo_position(px, py);
-}
-
-void Mouse::update_position(int dx, int dy)
-{
-   x += dx;
-   y += dy;
-}
 
 //void Mouse::position_in_middle_of_grid()
 //{

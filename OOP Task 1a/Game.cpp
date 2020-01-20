@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(string name): snake(&mouse), player(name)
+Game::Game(string name): snake(&mouse), player(name),is_cheating(false),has_cheated(false),got_nut(false), last_move_undone(false)
 {
 
 }
@@ -14,24 +14,30 @@ void Game::set_up()
 
 void Game::process_input(int key)
 {
+   last_move_undone = false;
+   
    mouse.scamper(key);
-   snake.chase_mouse();
+
+   if (!is_cheating)
+    snake.chase_mouse();
+
    apply_rules();
 }
 
-void Game::cheat(int key)
+void Game::cheat()
 {
 	cout << "Cheat mode is ON";
-	snake.has_cheated();
+    has_cheated = true;
+    is_cheating = !is_cheating;
 }
 
-void Game::undo_input(int key)
+void Game::undo_input()
 {
+    last_move_undone = true;
 	cout << "Last action undone\n";
-	mouse.undo_move();
 	mouse.undo_actions();
-	snake.undo_move();
-	snake.chase_mouse();
+    snake.undo_tail();
+	snake.undo_actions();
 
 	if (nut.has_been_collected() == true)
 	{
@@ -138,4 +144,9 @@ string Game::get_end_reason()
 Player Game::get_player()const
 {
     return player;
+}
+
+bool Game::get_last_input_undone()const
+{
+    return last_move_undone;
 }

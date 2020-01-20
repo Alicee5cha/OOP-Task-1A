@@ -5,15 +5,13 @@
 //RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 
-Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD), cheated(false), undo_key(false)
+Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD)
 {
-	
+	add_parts_to_tail();
 }
 
 void Snake::add_parts_to_tail()
 {
-	MoveableGridItem* me = this;
-	tail.push_back(*me);
 	for (int i = 0; i < 3; i++)
 	{
 		MoveableGridItem t(x, y, SNAKETAIL);
@@ -37,33 +35,19 @@ bool Snake::has_caught_mouse() const
 void Snake::chase_mouse()
 {
 	int snake_dx, snake_dy;
-
 			//Move tail
 			move_tail();
 
 			//identify direction of travel
 			set_direction(snake_dx, snake_dy);
 
-			//go in that direction
+			//Save current location
+			set_px_set_py(x, y);
+
+			//go in the direction of travel
 			update_position(snake_dx, snake_dy);
 }
 
-bool Snake::has_cheated()
-{
-	cheated = true;
-	return cheated;
-}
-
-bool Snake::undo_move()
-{
-	undo_key = true;
-	return undo_key;
-}
-
-void Snake::undo_actions()
-{
-	//undo_position(snake_dx, snake_dy);
-}
 
 void Snake::set_direction(int& dx, int& dy)
 {
@@ -96,8 +80,11 @@ void Snake::move_tail()
 {
 	for (int t = (int) (tail.size())-1; t > 0;t--)
 	{
+		tail[t].set_px_set_py(tail[t].get_x(), tail[t].get_y());
 		tail[t].move_to_position(tail[t-1].get_x(), tail[t-1].get_y());
 	}
+	tail[0].set_px_set_py(tail[0].get_x(),tail[0].get_y());
+	tail[0].move_to_position(x, y);
 }
 
 bool Snake::is_at_tail(const int x,const int y)const
@@ -114,7 +101,13 @@ bool Snake::is_at_tail(const int x,const int y)const
 }
 
 
-//RandomNumberGenerator Snake::getRNG() const
-//{
-//	return rng;
-//}
+
+void Snake::undo_tail()
+{
+	for (int i = tail.size()-1;i>=0;i--)
+		tail[i].undo_actions();
+	//for each (MoveableGridItem t in tail)
+	//{
+	//	t.undo_actions();
+	//}
+}

@@ -16,8 +16,7 @@ int main()
 	Game game(name);
 	//game.set_up();
 
-
-	bool last_move_undone = false;
+	char input = 'Y';
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
@@ -25,17 +24,16 @@ int main()
 
 		if (game.is_running())
 		{
-			if (IsKeyPressed(KEY_RIGHT)) { game.process_input(KEY_RIGHT); last_move_undone = false; }
-			if (IsKeyPressed(KEY_LEFT)) { game.process_input(KEY_LEFT); last_move_undone = false; }
-			if (IsKeyPressed(KEY_UP)) { game.process_input(KEY_UP); last_move_undone = false; }
-			if (IsKeyPressed(KEY_DOWN)) { game.process_input(KEY_DOWN); last_move_undone = false; }
-			if (IsKeyPressed(CHEAT))	  game.cheat(CHEAT);
+			if (IsKeyPressed(KEY_RIGHT))	game.process_input(KEY_RIGHT);
+			if (IsKeyPressed(KEY_LEFT))		game.process_input(KEY_LEFT); 
+			if (IsKeyPressed(KEY_UP))		game.process_input(KEY_UP);
+			if (IsKeyPressed(KEY_DOWN))		game.process_input(KEY_DOWN);
+			if (IsKeyPressed(CHEAT))		game.cheat();
 			if (IsKeyPressed(UNDO)) 
 			{ 
-				if (!last_move_undone)
+				if (!game.get_last_input_undone())
 				{ 
-					game.undo_input(UNDO);
-					last_move_undone = true;
+					game.undo_input();
 				} 
 				else
 				{
@@ -79,7 +77,7 @@ int main()
 
 		//Draw texts (score, name, etc...)
 		string title_1 = "Name: " + name;
-		string title_2 = "Score: " + game.get_player().get_score();
+		string title_2 = "Score: " + to_string(game.get_player().get_score());
 		DrawText(title_1.c_str() , 610, 35, 20, LIGHTGRAY);
 		DrawText(title_2.c_str(), 610, 60, 20, LIGHTGRAY);
 		

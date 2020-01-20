@@ -1,6 +1,9 @@
 #include "MoveableGridItem.h"
 
-MoveableGridItem::MoveableGridItem(int x, int y, const char symbol) :x(x),y(y),px(x),py(y),GridItem(symbol)
+RandomNumberGenerator MoveableGridItem::rng = RandomNumberGenerator();
+
+
+MoveableGridItem::MoveableGridItem(int x, int y, const char symbol):x(x),y(y),px(x),py(y),GridItem(symbol)
 {
 
 }
@@ -54,10 +57,15 @@ void MoveableGridItem::undo_position(int dx, int dy)
 	this->x -= dx;
 	this->y -= dy;
 }
-}
+
 
 void MoveableGridItem::move_to_position(int x, int y)
 {
 	this->x = x;
 	this->y = y;
+}
+
+void MoveableGridItem::undo_actions()
+{
+	move_to_position(px, py);
 }

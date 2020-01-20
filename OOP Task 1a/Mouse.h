@@ -19,8 +19,6 @@ class Mouse:public MoveableGridItem
 		void die();
 		void escape_into_hole();
 		void scamper(int key);
-		void undo_actions();
-		bool undo_move();
 
 	private:
 		// data members
@@ -28,11 +26,5 @@ class Mouse:public MoveableGridItem
 		bool escaped = false;
 		int mouse_dx = 0;
 		int mouse_dy = 0;
-		bool undo_key;
 
-		static RandomNumberGenerator rng;
-
-		// supporting functions 
-		//void position_in_middle_of_grid();
-		void update_position(int dx, int dy);
 };

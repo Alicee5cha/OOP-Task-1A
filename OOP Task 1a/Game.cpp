@@ -21,15 +21,20 @@ void Game::cheat(int key)
 {
 	cout << "Cheat mode is ON";
 	snake.has_cheated();
-	mouse.scamper(key);
-	apply_rules();
 }
 
 void Game::undo_input(int key)
 {
-	cout << "Last action has been undone";
+	cout << "Last action undone\n";
 	mouse.undo_move();
-	mouse.reset_position(mouse_dx, mouse_dy);
+	mouse.undo_actions();
+	snake.undo_move();
+	snake.chase_mouse();
+
+	if (nut.has_been_collected() == true)
+	{
+		
+	}
 
 }
 

@@ -3,7 +3,7 @@
 
 RandomNumberGenerator Mouse::rng = RandomNumberGenerator();
 
-Mouse::Mouse():MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),MOUSE)
+Mouse::Mouse(): MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), MOUSE),undo_key(false)
 {
 
 }
@@ -35,47 +35,50 @@ void Mouse::escape_into_hole()
 
 void Mouse::scamper(int key)
 {
+	//set prev co-ordinates
+	set_px_set_py(x, y);
+	//set next location
+
    switch (key)
    {
-      case KEY_LEFT:
-         mouse_dx = -1;
-         mouse_dy = 0;
-         break;
-      case KEY_RIGHT:
-         mouse_dx = +1;
-         mouse_dy = 0;
-         break;
-      case KEY_UP:
-         mouse_dx = 0;
-         mouse_dy = -1;
-         break;
-      case KEY_DOWN:
-         mouse_dx = 0;
-         mouse_dy = +1;
-         break;
-      default:
-         // not a key we care about, so do nothing
-         break;
+   case KEY_LEFT:
+	   mouse_dx = -1;
+	   mouse_dy = 0;
+	   break;
+   case KEY_RIGHT:
+	   mouse_dx = +1;
+	   mouse_dy = 0;
+	   break;
+   case KEY_UP:
+	   mouse_dx = 0;
+	   mouse_dy = -1;
+	   break;
+   case KEY_DOWN:
+	   mouse_dx = 0;
+	   mouse_dy = +1;
+	   break;
+   default:
+	   // not a key we care about, so do nothing
+	   break;
    }
    // update mouse coordinates if move is possible
 
-   if (undo_key == true)
-   {
-	   reset_position(mouse_dx, mouse_dy);
-   }
-   else
-   {
-		if (((x + mouse_dx) >= 1) && ((x + mouse_dx) <= SIZE) && ((y + mouse_dy) >= 1) && ((y + mouse_dy) <= SIZE))
-		{
-		   update_position(mouse_dx, mouse_dy);	  
-		}
-   }
+	if (((x + mouse_dx) >= 1) && ((x + mouse_dx) <= SIZE) && ((y + mouse_dy) >= 1) && ((y + mouse_dy) <= SIZE))
+	{
+	   update_position(mouse_dx, mouse_dy);	 
+
+	}
 }
 
 bool Mouse::undo_move()
 {
 	undo_key = true;
 	return undo_key;
+}
+
+void Mouse::undo_actions()
+{
+	undo_position(px, py);
 }
 
 void Mouse::update_position(int dx, int dy)

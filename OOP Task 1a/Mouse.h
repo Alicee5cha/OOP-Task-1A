@@ -20,7 +20,7 @@ class Mouse:public MoveableGridItem
 		void die();
 		void escape_into_hole();
 		void scamper(int key);
-		void undo_position(int dx, int dy);
+		void undo_actions();
 		bool undo_move();
 
 	private:

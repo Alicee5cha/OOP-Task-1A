@@ -9,7 +9,6 @@
 #include "Underground.h"
 #include "Player.h"
 #include "Nut.h"
-#include "Hole.h"
 
 using namespace std;
 

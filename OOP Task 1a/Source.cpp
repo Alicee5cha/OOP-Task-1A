@@ -86,7 +86,8 @@ int main()
 			input = getchar() | 32; //"or"ed with 32 acts like "toupper" for a char. y-->Y but Y-/->y
 			if (input == 'Y')
 			{
-				game.set_up();
+				//game.set_up();
+				
 			}
 			else
 				if (input == 'N')

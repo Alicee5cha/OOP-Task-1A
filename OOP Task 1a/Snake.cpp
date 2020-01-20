@@ -5,7 +5,7 @@
 RandomNumberGenerator Snake::rng = RandomNumberGenerator();
 
 
-Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD)
+Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD), cheated(false), undo_key(false)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -87,7 +87,7 @@ void Snake::position_at_random()
 
 void Snake::move_tail()
 {
-	for (int t = tail.size()-1; t>0;t--)
+	for (int t = (int)(tail.size())-1; t>0;t--)
 	{
 		tail[t].reset_position(tail[t-1].get_x(), tail[t-1].get_y());
 

@@ -1,2 +1,4 @@
-﻿  Snake.cpp
-  OOP Task 1a.vcxproj -> C:\Users\Alz\Documents\OOP-Task-1A\Debug\OOP Task 1a.exe
+﻿  Mouse.cpp
+Mouse.obj : error LNK2019: unresolved external symbol "public: void __thiscall MoveableGridItem::undo_position(int,int)" (?undo_position@MoveableGridItem@@QAEXHH@Z) referenced in function "public: void __thiscall Mouse::undo_actions(void)" (?undo_actions@Mouse@@QAEXXZ)
+Mouse.obj : error LNK2019: unresolved external symbol "public: void __thiscall MoveableGridItem::set_px_set_py(int,int)" (?set_px_set_py@MoveableGridItem@@QAEXHH@Z) referenced in function "public: void __thiscall Mouse::scamper(int)" (?scamper@Mouse@@QAEXH@Z)
+C:\Users\Alz\Documents\OOP-Task-1A\Debug\OOP Task 1a.exe : fatal error LNK1120: 2 unresolved externals

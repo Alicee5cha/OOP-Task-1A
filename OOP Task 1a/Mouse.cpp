@@ -36,9 +36,9 @@ void Mouse::escape_into_hole()
 void Mouse::scamper(int key)
 {
 	//set prev co-ordinates
-	set_px_set_py(x, y);
-	//set next location
+	set_px_set_py(mouse_dx, mouse_dy);
 
+	//set next location
    switch (key)
    {
    case KEY_LEFT:

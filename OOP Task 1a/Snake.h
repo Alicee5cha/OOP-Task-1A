@@ -12,6 +12,9 @@ public:
 	void chase_mouse();
 	//RandomNumberGenerator getRNG() const;
 	bool is_at_tail(const int x, const int y) const;
+	bool has_cheated();
+	bool undo_move();
+	void undo_actions();
 
 private: // util functions
 	void set_direction(int& dx, int& dy);
@@ -22,6 +25,8 @@ private: // data
 	Mouse* p_mouse;
 	//static RandomNumberGenerator rng;
 	vector<MoveableGridItem> tail;
+	bool cheated;
+	bool undo_key;
 	void add_parts_to_tail();
 
 };

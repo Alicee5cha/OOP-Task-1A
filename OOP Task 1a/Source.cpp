@@ -12,10 +12,12 @@ int main()
 	cin >> name;
 
 	//And giving them to games.
+
 	Game game(name);
 	//game.set_up();
 
-	char input = 'Y';
+
+	bool last_move_undone = false;
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
@@ -23,10 +25,23 @@ int main()
 
 		if (game.is_running())
 		{
-			if (IsKeyPressed(KEY_RIGHT))  game.process_input(KEY_RIGHT);
-			if (IsKeyPressed(KEY_LEFT))   game.process_input(KEY_LEFT);
-			if (IsKeyPressed(KEY_UP))     game.process_input(KEY_UP);
-			if (IsKeyPressed(KEY_DOWN))   game.process_input(KEY_DOWN);
+			if (IsKeyPressed(KEY_RIGHT)) { game.process_input(KEY_RIGHT); last_move_undone = false; }
+			if (IsKeyPressed(KEY_LEFT)) { game.process_input(KEY_LEFT); last_move_undone = false; }
+			if (IsKeyPressed(KEY_UP)) { game.process_input(KEY_UP); last_move_undone = false; }
+			if (IsKeyPressed(KEY_DOWN)) { game.process_input(KEY_DOWN); last_move_undone = false; }
+			if (IsKeyPressed(CHEAT))	  game.cheat(CHEAT);
+			if (IsKeyPressed(UNDO)) 
+			{ 
+				if (!last_move_undone)
+				{ 
+					game.undo_input(UNDO);
+					last_move_undone = true;
+				} 
+				else
+				{
+					cout << "No more undo's this turn!\n";
+				}
+			};
 		}
 		else
 		{
@@ -84,6 +99,7 @@ int main()
 
 		EndDrawing();
 	}
+
 	CloseWindow();
 	return 0;
 }

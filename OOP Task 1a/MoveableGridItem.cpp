@@ -1,9 +1,6 @@
 #include "MoveableGridItem.h"
 
-RandomNumberGenerator MoveableGridItem::rng = RandomNumberGenerator();
-
-
-MoveableGridItem::MoveableGridItem(int x, int y, const char symbol) :x(x),y(y),GridItem(symbol)
+MoveableGridItem::MoveableGridItem(int x, int y, const char symbol) :x(x),y(y),px(x),py(y),GridItem(symbol)
 {
 
 }
@@ -16,6 +13,22 @@ int MoveableGridItem::get_x() const
 int MoveableGridItem::get_y() const
 {
 	return y;
+}
+
+int MoveableGridItem::get_px() const
+{
+	return px;
+}
+
+int MoveableGridItem::get_py() const
+{
+	return py;
+}
+
+void MoveableGridItem::set_px_set_py(int px, int py)
+{
+	this->px = px;
+	this->py = py;
 }
 
 bool MoveableGridItem::is_at_position(int x, int y)const
@@ -34,6 +47,13 @@ void MoveableGridItem::update_position(int dx, int dy)
 {
 	this->x += dx;
 	this->y += dy;
+}
+
+void MoveableGridItem::undo_position(int dx, int dy)
+{
+	this->x -= dx;
+	this->y -= dy;
+}
 }
 
 void MoveableGridItem::move_to_position(int x, int y)

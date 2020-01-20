@@ -22,5 +22,6 @@ private: // data
 	Mouse* p_mouse;
 	//static RandomNumberGenerator rng;
 	vector<MoveableGridItem> tail;
+	void add_parts_to_tail();
 
 };

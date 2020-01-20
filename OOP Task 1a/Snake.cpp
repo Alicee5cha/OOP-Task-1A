@@ -7,9 +7,16 @@
 
 Snake::Snake(Mouse* const p_mouse) :p_mouse(p_mouse), MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE), SNAKEHEAD)
 {
+	
+}
+
+void Snake::add_parts_to_tail()
+{
+	MoveableGridItem* me = this;
+	tail.push_back(*me);
 	for (int i = 0; i < 3; i++)
 	{
-		MoveableGridItem t(x,y,SNAKETAIL);
+		MoveableGridItem t(x, y, SNAKETAIL);
 		tail.push_back(t);
 	}
 }
@@ -29,16 +36,16 @@ bool Snake::has_caught_mouse() const
 
 void Snake::chase_mouse()
 {
-	int snake_dx, snake_dy;
+
 	//Move tail
 	move_tail();
+	int snake_dx, snake_dy;
 
 	//identify direction of travel
 	set_direction(snake_dx, snake_dy);
 
 	//go in that direction
 	update_position(snake_dx, snake_dy);
-
 }
 
 void Snake::set_direction(int& dx, int& dy)
@@ -70,13 +77,10 @@ void Snake::position_at_random()
 
 void Snake::move_tail()
 {
-	for (int t = tail.size()-1; t>0;t--)
+	for (int t = (int) (tail.size())-1; t > 0;t--)
 	{
 		tail[t].move_to_position(tail[t-1].get_x(), tail[t-1].get_y());
-
 	}
-	tail[0].move_to_position(x, y);
-
 }
 
 bool Snake::is_at_tail(const int x,const int y)const

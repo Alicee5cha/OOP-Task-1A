@@ -3,6 +3,8 @@
 #include <cassert>
 #include <vector>
 #include "Hole.h"
+#include "Tunnel.h"
+
 using namespace std;
 
 //class Hole

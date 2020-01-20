@@ -62,6 +62,11 @@ void Mouse::scamper(int key)
    }
 }
 
+void Mouse::moveTo(int x, int y)
+{
+	
+}
+
 void Mouse::update_position(int dx, int dy)
 {
    x += dx;

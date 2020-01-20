@@ -18,6 +18,7 @@ class Mouse:public MoveableGridItem
 		void die();
 		void escape_into_hole();
 		void scamper(int key);
+		void moveTo(int x,int y);
 
 	private:
 		// data members

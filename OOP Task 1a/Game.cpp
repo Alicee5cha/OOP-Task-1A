@@ -78,9 +78,11 @@ void Game::apply_rules()
    }
    else
    {
-      if (mouse.has_reached_a_hole(underground) && nut.has_been_collected())
+      if (mouse.has_reached_a_hole(underground))
       {
+		if(nut.has_been_collected())
          mouse.escape_into_hole();
+		else{}
       }
       
       if (mouse.can_collect_nut(nut) &&  mouse.is_at_position(nut.get_x(),nut.get_y()))

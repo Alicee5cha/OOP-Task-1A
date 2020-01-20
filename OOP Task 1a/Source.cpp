@@ -83,10 +83,10 @@ int main()
 		
 		while (input != 'Y' && input != 'N')
 		{
-			input = getchar() | 32; //"or"ed with 32 acts like "toupper" for a char. y-->Y but Y-/->y
+			input = toupper(input);
 			if (input == 'Y')
 			{
-				//game.set_up();
+				game.set_up();
 				
 			}
 			else

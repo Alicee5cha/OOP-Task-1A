@@ -35,11 +35,13 @@ bool Snake::has_caught_mouse() const
 void Snake::chase_mouse()
 {
 	int snake_dx, snake_dy;
-			//Move tail
-			move_tail();
 
 			//identify direction of travel
 			set_direction(snake_dx, snake_dy);
+			
+			//Move tail
+			if (!(snake_dx==0 && snake_dy==0))
+				move_tail();
 
 			//Save current location
 			set_px_set_py(x, y);
@@ -58,15 +60,21 @@ void Snake::set_direction(int& dx, int& dy)
 	dx = 0; dy = 0;
 
 	// update coordinate if necessary
-	if (x < p_mouse->get_x() && !is_at_tail(x+1,y))         // if snake on left of mouse and a tail isn't immediately to the right
+	if (x < p_mouse->get_x() )         // if snake on left of mouse and a tail isn't immediately to the right
 		dx = 1;                        // snake should move right
-	else if (x > p_mouse->get_x() && !is_at_tail(x - 1, y))    // if snake on right of mouse and a tail isn't immediately to the left
+	else if (x > p_mouse->get_x())    // if snake on right of mouse and a tail isn't immediately to the left
 		dx = -1;						       // snake should move left
 
-	if (y < p_mouse->get_y() && !is_at_tail(x, y+1))         // if snake is above mouse and a tail isn't immediately below
+	if (y < p_mouse->get_y())         // if snake is above mouse and a tail isn't immediately below
 		dy = 1;                        // snake should move down
-	else if (y > p_mouse->get_y() && !is_at_tail(x,y-1))    // if snake is below mouse and a tail isn't immediately above
+	else if (y > p_mouse->get_y())    // if snake is below mouse and a tail isn't immediately above
 		dy = -1;						       // snake should move up
+
+	if (is_at_tail(x + dx, y + dy))
+	{
+		dy = 0; 
+		dx = 0;
+	}
 }
 
 void Snake::position_at_random()

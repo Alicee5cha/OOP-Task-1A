@@ -86,3 +86,17 @@ bool Underground::is_at_hole(const int x,const int y) const
 	}
 	return false;
 }
+
+vector<int> Underground::get_next_hole_coordinates(const int x, const int y)
+{
+	vector<int> temp = { 0,0 };
+	
+	for (int i = 0; i < holes.size(); i++)
+	{
+		if (holes[i].get_x() == x && holes[i].get_y()==y)
+		{
+			temp[0] = holes[(i + 1) % 3].get_x();
+			temp[1] = holes[(i + 1) % 3].get_y();
+		}
+	}
+}

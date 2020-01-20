@@ -17,6 +17,23 @@ void Game::process_input(int key)
    apply_rules();
 }
 
+void Game::cheat(int key)
+{
+	cout << "Cheat mode is ON";
+	snake.has_cheated();
+	mouse.scamper(key);
+	apply_rules();
+}
+
+void Game::undo_input(int key)
+{
+	cout << "Last action has been undone";
+	mouse.undo_move();
+	mouse.reset_position(mouse_dx, mouse_dy);
+
+}
+
+
 vector<vector<char>> Game::prepare_grid()
 {
    // create the 2D grid
@@ -100,10 +117,12 @@ string Game::get_end_reason()
     if (mouse.has_escaped())
     {
         player.update_score(1);
+		cout << "You escaped underground! \n";
         return "You escaped underground!";
     }
 
     player.update_score(-1);
+	cout << "The snake ate you! \n";
     return "The snake ate you!";
 }
 

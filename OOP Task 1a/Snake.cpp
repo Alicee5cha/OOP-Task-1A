@@ -29,16 +29,24 @@ bool Snake::has_caught_mouse() const
 
 void Snake::chase_mouse()
 {
-	int snake_dx, snake_dy;
-	//Move tail
-	move_tail();
+	if (cheated == false)
+	{
+		int snake_dx, snake_dy;
+		//Move tail
+		move_tail();
 
-	//identify direction of travel
-	set_direction(snake_dx, snake_dy);
+		//identify direction of travel
+		set_direction(snake_dx, snake_dy);
 
-	//go in that direction
-	update_position(snake_dx, snake_dy);
+		//go in that direction
+		update_position(snake_dx, snake_dy);
+	}
+}
 
+bool Snake::has_cheated()
+{
+	cheated = true;
+	return cheated;
 }
 
 void Snake::set_direction(int& dx, int& dy)

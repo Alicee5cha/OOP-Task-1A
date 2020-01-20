@@ -1,8 +1,11 @@
 #include "Mouse.h"
+#include "RandomNumberGenerator.h"
 
-Mouse::Mouse():MoveableGridItem(SIZE/2,SIZE/2,MOUSE)
+RandomNumberGenerator Mouse::rng = RandomNumberGenerator();
+
+Mouse::Mouse():MoveableGridItem(rng.get_random_value(SIZE), rng.get_random_value(SIZE),MOUSE)
 {
-   //position_in_middle_of_grid();
+
 }
 
 bool Mouse::is_alive() const
@@ -54,12 +57,25 @@ void Mouse::scamper(int key)
          // not a key we care about, so do nothing
          break;
    }
-
    // update mouse coordinates if move is possible
-   if (((x + mouse_dx) >= 1) && ((x + mouse_dx) <= SIZE) && ((y + mouse_dy) >= 1) && ((y + mouse_dy) <= SIZE))
+
+   if (undo_key == true)
    {
-      update_position(mouse_dx, mouse_dy);
+	   reset_position(mouse_dx, mouse_dy);
    }
+   else
+   {
+		if (((x + mouse_dx) >= 1) && ((x + mouse_dx) <= SIZE) && ((y + mouse_dy) >= 1) && ((y + mouse_dy) <= SIZE))
+		{
+		   update_position(mouse_dx, mouse_dy);	  
+		}
+   }
+}
+
+bool Mouse::undo_move()
+{
+	undo_key = true;
+	return undo_key;
 }
 
 void Mouse::update_position(int dx, int dy)
@@ -77,4 +93,9 @@ void Mouse::position_in_middle_of_grid()
 bool Mouse::can_collect_nut(Nut nut)const 
 {
     return !nut.has_been_collected();
+}
+
+RandomNumberGenerator Mouse::getRNG() const
+{
+	return rng;
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include "MoveableGridItem.h"
+#include "RandomNumberGenerator.h"
+
 class Nut:public MoveableGridItem
 {
 private:
@@ -8,6 +10,6 @@ public:
 	Nut();
 	bool has_been_collected() const;
 	void disappear();
-
+	void reset();
 };
 

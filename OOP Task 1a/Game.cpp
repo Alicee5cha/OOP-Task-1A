@@ -1,21 +1,52 @@
 #include "Game.h"
 
-Game::Game(string name): snake(&mouse), player(name)
+Game::Game(string name): snake(&mouse), player(name),is_cheating(false),has_cheated(false),got_nut(false), last_move_undone(false)
 {
 
 }
 
-//void Game::set_up()
-//{
-//    snake.spot_mouse(&mouse);
-//}
+void Game::set_up()
+{
+    got_nut = false;
+    snake.reset_position();
+    mouse.reset();
+    nut.reset();
+}
 
 void Game::process_input(int key)
 {
+   last_move_undone = false;
+   
    mouse.scamper(key);
-   snake.chase_mouse();
+
+   if (!is_cheating)
+    snake.chase_mouse();
+
    apply_rules();
 }
+
+void Game::cheat()
+{
+	cout << "Cheat mode is ON";
+    has_cheated = true;
+    is_cheating = !is_cheating;
+}
+
+void Game::undo_input()
+{
+    last_move_undone = true;
+	cout << "Last action undone\n";
+	mouse.undo_actions();
+    snake.undo_tail();
+	snake.undo_actions();
+
+	if (nut.has_been_collected() == true)
+	{
+		
+	}
+
+}
+
 
 vector<vector<char>> Game::prepare_grid()
 {
@@ -74,13 +105,26 @@ void Game::apply_rules()
 {
    if (snake.has_caught_mouse())
    {
-      mouse.die();
+       if (mouse.is_alive())
+       {
+           mouse.die();
+           player.update_score(-1);
+
+       }
    }
    else
    {
-      if (mouse.has_reached_a_hole(underground) && nut.has_been_collected())
+      if (mouse.has_reached_a_hole(underground))
       {
-         mouse.escape_into_hole();
+		  if (nut.has_been_collected()) {
+			  mouse.escape_into_hole();
+              player.update_score(1);
+
+		  }else
+		  {
+			  vector<int> new_position = underground.get_next_hole_coordinates(mouse.get_x(), mouse.get_y());
+			  mouse.move_to_position(new_position[0], new_position[1]);
+		  }
       }
       
       if (mouse.can_collect_nut(nut) &&  mouse.is_at_position(nut.get_x(),nut.get_y()))
@@ -99,15 +143,19 @@ string Game::get_end_reason()
 {
     if (mouse.has_escaped())
     {
-        player.update_score(1);
+		
         return "You escaped underground!";
     }
 
-    player.update_score(-1);
     return "The snake ate you!";
 }
 
 Player Game::get_player()const
 {
     return player;
+}
+
+bool Game::get_last_input_undone()const
+{
+    return last_move_undone;
 }

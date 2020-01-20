@@ -3,6 +3,7 @@
 #include "Underground.h"
 #include "MoveableGridItem.h"
 #include "Nut.h"
+#include "RandomNumberGenerator.h"
 class Mouse:public MoveableGridItem
 {
 	public:
@@ -18,16 +19,12 @@ class Mouse:public MoveableGridItem
 		void die();
 		void escape_into_hole();
 		void scamper(int key);
-
+		void reset();
 	private:
 		// data members
-		bool alive = true;
-		bool escaped = false;
-		int mouse_dx = 0;
-		int mouse_dy = 0;
-
-		// supporting functions 
-		void position_in_middle_of_grid();
-		void update_position(int dx, int dy);
+		bool alive;
+		bool escaped;
+		int mouse_dx;
+		int mouse_dy;
 
 };

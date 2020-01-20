@@ -1,16 +1,25 @@
 ﻿  FixedGridItem.cpp
   Game.cpp
-C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Game.cpp(4,1): error C2512: 'Player': no appropriate default constructor available
   GridItem.cpp
   Hole.cpp
   Mouse.cpp
   MoveableGridItem.cpp
   Nut.cpp
-  Player.cpp
-  RandomNumberGenerator.cpp
-  Score.cpp
   Snake.cpp
   Source.cpp
   Underground.cpp
   Generating Code...
-C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Player.h(5,7): message : see declaration of 'Player'
+C:\Users\Alz\Documents\OOP-Task-1A\OOP Task 1a\Snake.cpp(90,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Source.obj : error LNK2019: unresolved external symbol InitWindow referenced in function main
+Source.obj : error LNK2019: unresolved external symbol WindowShouldClose referenced in function main
+Source.obj : error LNK2019: unresolved external symbol GetScreenHeight referenced in function main
+Source.obj : error LNK2019: unresolved external symbol ClearBackground referenced in function main
+Source.obj : error LNK2019: unresolved external symbol BeginDrawing referenced in function main
+Source.obj : error LNK2019: unresolved external symbol EndDrawing referenced in function main
+Source.obj : error LNK2019: unresolved external symbol SetTargetFPS referenced in function main
+Source.obj : error LNK2019: unresolved external symbol IsKeyPressed referenced in function main
+Source.obj : error LNK2019: unresolved external symbol DrawRectangle referenced in function main
+Source.obj : error LNK2019: unresolved external symbol DrawRectangleLines referenced in function main
+Source.obj : error LNK2019: unresolved external symbol DrawText referenced in function main
+..\raylib\lib\raylib_static.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\Alz\Documents\OOP-Task-1A\x64\Debug\OOP Task 1a.exe : fatal error LNK1120: 11 unresolved externals
